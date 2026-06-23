@@ -4,161 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Centro de Mando · Transformación</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
-
-  :root{
-    --ink:#0e1023; --paper:#f7f7fb; --card:#fff; --line:#e6e6ef; --line-soft:#f0f0f6;
-    --muted:#6b6e85; --text:#23263b;
-    --indigo:#4f46e5; --amber:#d97706; --amber-bg:#fef6e7; --coral:#ea580c; --coral-bg:#fff1ea;
-    --green:#059669; --green-bg:#e9f7f0; --violet:#7c3aed; --violet-bg:#f1ecfd; --blue:#2563eb; --blue-bg:#e9f0fe;
-    --r:14px; --shadow:0 1px 2px rgba(14,16,35,.04),0 8px 24px rgba(14,16,35,.05);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{margin:0;font-family:'Inter',sans-serif;background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 18px 80px;}
-
-  header.top{background:var(--ink);background-image:radial-gradient(900px 300px at 12% -40%,#2a2d5e 0,transparent 60%);color:#fff;padding:22px 0 18px;border-bottom:1px solid #25284c;}
-  .top .wrap{padding-bottom:0;}
-  .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-  .glyph{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--indigo),#8b5cf6);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:19px;box-shadow:0 6px 18px rgba(79,70,229,.45);}
-  .brand h1{font-family:'Space Grotesk',sans-serif;font-size:19px;margin:0;letter-spacing:.3px;font-weight:700;}
-  .brand .sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9ea2cf;letter-spacing:.5px;margin-top:2px;}
-  .ticker{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap;align-items:center;}
-  .ticker .t{text-align:right;}
-  .ticker .t .k{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8b8fc0;letter-spacing:1px;text-transform:uppercase;}
-  .ticker .t .v{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#fff;}
-
-  nav.tabs{position:sticky;top:0;z-index:30;background:rgba(247,247,251,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  .tabrow{max-width:1180px;margin:0 auto;padding:9px 14px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;}
-  .tabrow::-webkit-scrollbar{display:none;}
-  .tab{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;padding:8px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .15s;white-space:nowrap;}
-  .tab .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.55;}
-  .tab:hover{color:var(--text);border-color:#d3d3e3;}
-  .tab.active{color:#fff;border-color:transparent;}
-  .tab[data-c=dash].active{background:var(--indigo);}
-  .tab[data-c=horario].active{background:var(--blue);}
-  .tab[data-c=entreno].active{background:var(--coral);}
-  .tab[data-c=comida].active{background:var(--green);}
-  .tab[data-c=ingles].active{background:var(--amber);}
-  .tab[data-c=habitos].active{background:var(--violet);}
-  .tab.active .dot{opacity:1;background:#fff;}
-
-  .panel{display:none;padding-top:26px;animation:fade .25s ease;}
-  .panel.show{display:block;}
-  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
-
-  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 4px;}
-  h2.section{font-family:'Space Grotesk',sans-serif;font-size:26px;margin:0 0 4px;letter-spacing:-.2px;}
-  .lead{color:var(--muted);margin:0 0 22px;max-width:740px;font-size:14.5px;}
-
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);}
-  .grid{display:grid;gap:16px;}
-  .g2{grid-template-columns:repeat(2,1fr);}
-  .g3{grid-template-columns:repeat(3,1fr);}
-  @media (max-width:820px){.g2,.g3{grid-template-columns:1fr;}}
-
-  .pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.5px;padding:3px 9px;border-radius:999px;text-transform:uppercase;font-weight:700;}
-
-  .metric .lab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
-  .metric .big{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;margin:6px 0 2px;}
-  .metric .note{font-size:12.5px;color:var(--muted);}
-  .bar{height:8px;border-radius:999px;background:var(--line-soft);margin-top:14px;overflow:hidden;}
-  .bar>i{display:block;height:100%;border-radius:999px;}
-
-  table{width:100%;border-collapse:collapse;}
-  .tbl th{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);}
-  .tbl td{padding:12px;border-bottom:1px solid var(--line-soft);font-size:13.5px;vertical-align:top;}
-  .tbl tr:last-child td{border-bottom:none;}
-  .ex{font-weight:600;color:var(--text);display:block;}
-  .ex small{display:block;font-weight:600;font-size:10px;letter-spacing:.5px;text-transform:uppercase;margin-top:3px;color:var(--coral);}
-  .sets{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;white-space:nowrap;}
-
-  .dayhead{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;}
-  .tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 8px;border-radius:6px;letter-spacing:.5px;}
-  .tag.gym{background:var(--coral-bg);color:var(--coral);}
-  .tag.rest{background:#eef0f4;color:var(--muted);}
-
-  ul.clean{margin:0;padding-left:18px;}
-  ul.clean li{margin-bottom:7px;font-size:13.5px;}
-  ul.clean li::marker{color:var(--muted);}
-
-  .callout{border-left:4px solid var(--indigo);background:#f4f4fd;padding:13px 16px;border-radius:0 10px 10px 0;font-size:13px;margin-top:16px;}
-  .callout b{color:var(--ink);}
-  .callout.warn{border-color:var(--coral);background:var(--coral-bg);}
-  .callout.tip{border-color:var(--green);background:var(--green-bg);}
-
-  /* timeline */
-  .tl{display:flex;flex-direction:column;}
-  .tl .row{display:grid;grid-template-columns:50px 4px 1fr;gap:11px;align-items:stretch;padding:7px 0;border-bottom:1px solid var(--line-soft);}
-  .tl .row:last-child{border-bottom:none;}
-  .tl .t{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ink);padding-top:1px;}
-  .tl .b2{border-radius:3px;}
-  .tl .act b{font-size:13px;display:block;line-height:1.35;}
-  .tl .act span{font-size:11.5px;color:var(--muted);}
-  .b-en{background:var(--amber);} .a-en b{color:var(--amber);}
-  .b-cls{background:var(--blue);}
-  .b-gym{background:var(--coral);} .a-gym b{color:var(--coral);}
-  .b-food{background:var(--green);}
-  .b-work{background:#c2772f;}
-  .b-skill{background:#0891b2;} .a-skill b{color:#0e7490;}
-  .b-rest{background:#b9bcc9;}
-
-  /* meals */
-  .meal{padding:9px 0;border-bottom:1px solid var(--line-soft);}
-  .meal:last-of-type{border-bottom:none;}
-  .meal .mh{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--green);font-weight:700;}
-  .meal p{margin:3px 0 0;font-size:12.8px;line-height:1.45;}
-  .daytot{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;color:var(--ink);background:var(--green-bg);padding:7px 11px;border-radius:8px;display:inline-block;}
-
-  /* tools */
-  .tool{border:1px solid var(--line);border-radius:11px;padding:14px;background:var(--card);}
-  .tool .th{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-  .tool h4{margin:0;font-family:'Space Grotesk',sans-serif;font-size:14.5px;}
-  .free{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:5px;font-weight:700;letter-spacing:.4px;}
-  .free.g{background:var(--green-bg);color:var(--green);}
-  .free.p{background:var(--amber-bg);color:var(--amber);}
-  .tool p{font-size:12.5px;color:var(--muted);margin:7px 0 0;}
-  .tool p b{color:var(--text);}
-
-  /* habit tracker */
-  .htools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px;}
-  .htools input[type=text]{font-family:'JetBrains Mono',monospace;border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:12px;}
-  .btn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:12.5px;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:7px 13px;cursor:pointer;color:var(--text);}
-  .btn:hover{border-color:#cfcfe0;}
-  .htbl{width:100%;border-collapse:collapse;}
-  .htbl th{font-family:'JetBrains Mono',monospace;font-size:10px;padding:8px 4px;color:var(--muted);border-bottom:1px solid var(--line);}
-  .htbl td{border-bottom:1px solid var(--line-soft);padding:8px 4px;text-align:center;}
-  .htbl .hname{text-align:left;font-weight:600;font-size:12.5px;padding-left:6px;}
-  .htbl .hname small{display:block;font-weight:500;color:var(--muted);font-size:10.5px;}
-  .htbl .cat td{background:var(--violet-bg);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-align:left;padding:9px 10px;color:var(--violet);}
-  .ck{width:20px;height:20px;border-radius:50%;border:2px solid #cdcdda;cursor:pointer;display:inline-block;transition:all .12s;}
-  .ck:hover{border-color:var(--violet);transform:scale(1.12);}
-  .ck.on{background:var(--violet);border-color:var(--violet);position:relative;}
-  .ck.on::after{content:"✓";color:#fff;font-size:12px;font-weight:700;position:absolute;inset:0;display:grid;place-items:center;}
-  .ck.rest{border-style:dashed;border-color:#dcdce4;cursor:default;opacity:.5;}
-  .ck.rest:hover{transform:none;}
-
-  .footer-note{text-align:center;color:var(--muted);font-size:11.5px;margin-top:36px;font-family:'JetBrains Mono',monospace;letter-spacing:.3px;}
-  .printbtn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:12px;cursor:pointer;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18);padding:7px 13px;border-radius:9px;}
-  .printbtn:hover{background:rgba(255,255,255,.16);}
-
-  @media (max-width:640px){
-    .ticker{width:100%;justify-content:space-between;gap:12px;margin-top:12px;}
-    .ticker .t{text-align:left;}
-    h2.section{font-size:22px;}
-  }
-  @media print{
-    nav.tabs,.printbtn,.htools{display:none!important;}
-    header.top{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-    .panel{display:block!important;page-break-before:always;padding-top:8px;}
-    .panel:first-of-type{page-break-before:avoid;}
-    body{background:#fff;}
-    .card,.b2,.daytot,.htbl .cat td,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-    @page{margin:1cm;}
-  }
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -228,8 +74,9 @@
         <li><b>Mié · Vie · Dom</b> → descanso (Mié y Vie son tus días presenciales)</li>
         <li><b>Clases:</b> Lun–Mié 7–11 · Jue 7–13</li>
         <li><b>Pasantía presencial:</b> Mié 12–14 · Vie 8–13. El resto, ~4 h remoto.</li>
-        <li><b>Transporte (~2 h/día):</b> 100% inglés (podcast + shadowing)</li>
-        <li><b>21:00 cada noche:</b> output de inglés — lo que más te falta en A2</li>
+        <li><b>Entreno entre semana ~18:00</b>, después del bloque de trabajo; ducha y merienda en seguida.</li>
+        <li><b>Transporte (~2 h/día):</b> 100% inglés (podcast + shadowing).</li>
+        <li><b>21:00 cada noche:</b> Anki + output de inglés — lo que más te falta en A2.</li>
       </ul>
     </div>
     <div class="card">
@@ -252,144 +99,9 @@
 <section class="panel" id="horario">
   <p class="eyebrow">Estructura · día por día</p>
   <h2 class="section">Tu día, minuto a minuto</h2>
-  <p class="lead">Sobre tus anclas reales: clases Lun–Mié 7–11 y Jue 7–13, pasantía presencial Mié 12–14 y Vie 8–13. Las horas son una guía; respeta las anclas y mueve los bloques flexibles si hace falta.</p>
+  <p class="lead">Sobre tus anclas reales: clases Lun–Mié 7–11 y Jue 7–13, pasantía presencial Mié 12–14 y Vie 8–13. El entreno entre semana va a las 18:00, después del trabajo. Las horas son una guía; respeta las anclas y mueve los bloques flexibles si hace falta.</p>
 
-  <div class="grid g2">
-
-    <!-- LUNES -->
-    <div class="card">
-      <div class="dayhead">Lunes <span class="tag gym">ENTRENO · TORSO A</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">05:15</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Anki</b><span>repaso del mazo + 10 palabras nuevas</span></div></div>
-        <div class="row"><span class="t">05:45</span><div class="b2 b-food"></div><div class="act"><b>Desayuno 1</b></div></div>
-        <div class="row"><span class="t">06:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Transporte · Inglés</b><span>podcast + shadowing</span></div></div>
-        <div class="row"><span class="t">07:00</span><div class="b2 b-cls"></div><div class="act"><b>Clases U</b><span>snack 1 en el receso</span></div></div>
-        <div class="row"><span class="t">11:00</span><div class="b2 b-en"></div><div class="act"><b>Transporte → casa</b><span>audiolibro</span></div></div>
-        <div class="row"><span class="t">12:00</span><div class="b2 b-food"></div><div class="act"><b>Almuerzo</b></div></div>
-        <div class="row"><span class="t">13:00</span><div class="b2 b-gym"></div><div class="act a-gym"><b>Entreno · Torso A</b><span>~50 min</span></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-work"></div><div class="act"><b>Trabajo remoto</b><span>bloque foco 4 h · pausa postura cada hora</span></div></div>
-        <div class="row"><span class="t">18:00</span><div class="b2 b-food"></div><div class="act"><b>Snack 2 + tareas U</b></div></div>
-        <div class="row"><span class="t">20:00</span><div class="b2 b-skill"></div><div class="act a-skill"><b>Nueva habilidad</b><span>curso/proyecto 30 min</span></div></div>
-        <div class="row"><span class="t">20:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda</b></div></div>
-        <div class="row"><span class="t">21:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Output</b><span>hablar 15 min + escribir 5 frases</span></div></div>
-        <div class="row"><span class="t">21:45</span><div class="b2 b-rest"></div><div class="act"><b>Alistar mañana + ducha</b></div></div>
-        <div class="row"><span class="t">22:30</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b><span>≈ 7 h</span></div></div>
-      </div>
-    </div>
-
-    <!-- MARTES -->
-    <div class="card">
-      <div class="dayhead">Martes <span class="tag gym">ENTRENO · PIERNA A</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">05:15</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Anki</b><span>repaso + 10 nuevas</span></div></div>
-        <div class="row"><span class="t">05:45</span><div class="b2 b-food"></div><div class="act"><b>Desayuno 1</b></div></div>
-        <div class="row"><span class="t">06:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Transporte · Inglés</b><span>podcast + shadowing</span></div></div>
-        <div class="row"><span class="t">07:00</span><div class="b2 b-cls"></div><div class="act"><b>Clases U</b><span>snack 1 en el receso</span></div></div>
-        <div class="row"><span class="t">11:00</span><div class="b2 b-en"></div><div class="act"><b>Transporte → casa</b><span>audiolibro</span></div></div>
-        <div class="row"><span class="t">12:00</span><div class="b2 b-food"></div><div class="act"><b>Almuerzo</b></div></div>
-        <div class="row"><span class="t">13:00</span><div class="b2 b-gym"></div><div class="act a-gym"><b>Entreno · Pierna A</b><span>~50 min</span></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-work"></div><div class="act"><b>Trabajo remoto</b><span>bloque foco 4 h</span></div></div>
-        <div class="row"><span class="t">18:00</span><div class="b2 b-food"></div><div class="act"><b>Snack 2 + tareas U</b></div></div>
-        <div class="row"><span class="t">20:00</span><div class="b2 b-skill"></div><div class="act a-skill"><b>Nueva habilidad</b><span>30 min</span></div></div>
-        <div class="row"><span class="t">20:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda</b></div></div>
-        <div class="row"><span class="t">21:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Output</b><span>hablar + escribir</span></div></div>
-        <div class="row"><span class="t">21:45</span><div class="b2 b-rest"></div><div class="act"><b>Alistar mañana</b></div></div>
-        <div class="row"><span class="t">22:30</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b></div></div>
-      </div>
-    </div>
-
-    <!-- MIÉRCOLES -->
-    <div class="card">
-      <div class="dayhead">Miércoles <span class="tag rest">DESCANSO</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">05:15</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Anki</b><span>repaso + 10 nuevas</span></div></div>
-        <div class="row"><span class="t">05:45</span><div class="b2 b-food"></div><div class="act"><b>Desayuno 1</b></div></div>
-        <div class="row"><span class="t">06:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Transporte · Inglés</b><span>podcast</span></div></div>
-        <div class="row"><span class="t">07:00</span><div class="b2 b-cls"></div><div class="act"><b>Clases U</b><span>snack 1 en receso</span></div></div>
-        <div class="row"><span class="t">11:00</span><div class="b2 b-en"></div><div class="act"><b>Transporte a pasantía</b><span>+ almuerzo ligero / llévalo</span></div></div>
-        <div class="row"><span class="t">12:00</span><div class="b2 b-work"></div><div class="act"><b>Pasantía presencial</b><span>12–14</span></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-en"></div><div class="act"><b>Transporte → casa</b><span>audiolibro</span></div></div>
-        <div class="row"><span class="t">15:00</span><div class="b2 b-food"></div><div class="act"><b>Comida fuerte (tardía)</b></div></div>
-        <div class="row"><span class="t">15:30</span><div class="b2 b-work"></div><div class="act"><b>Remoto (completar horas)</b><span>~2 h</span></div></div>
-        <div class="row"><span class="t">18:00</span><div class="b2 b-skill"></div><div class="act a-skill"><b>Tareas → Nueva habilidad</b></div></div>
-        <div class="row"><span class="t">20:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda</b></div></div>
-        <div class="row"><span class="t">21:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Output</b></div></div>
-        <div class="row"><span class="t">22:30</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b></div></div>
-      </div>
-    </div>
-
-    <!-- JUEVES -->
-    <div class="card">
-      <div class="dayhead">Jueves <span class="tag gym">ENTRENO · TORSO B</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">05:15</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Anki</b><span>repaso + 10 nuevas</span></div></div>
-        <div class="row"><span class="t">05:45</span><div class="b2 b-food"></div><div class="act"><b>Desayuno 1</b></div></div>
-        <div class="row"><span class="t">06:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Transporte · Inglés</b><span>podcast + shadowing</span></div></div>
-        <div class="row"><span class="t">07:00</span><div class="b2 b-cls"></div><div class="act"><b>Clases U (7–13)</b><span>snack 1 ~10:00 · bloque largo</span></div></div>
-        <div class="row"><span class="t">13:00</span><div class="b2 b-en"></div><div class="act"><b>Transporte → casa</b><span>audiolibro</span></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-food"></div><div class="act"><b>Almuerzo</b></div></div>
-        <div class="row"><span class="t">14:30</span><div class="b2 b-gym"></div><div class="act a-gym"><b>Entreno · Torso B</b></div></div>
-        <div class="row"><span class="t">15:30</span><div class="b2 b-work"></div><div class="act"><b>Trabajo remoto</b><span>~3.5 h + snack 2</span></div></div>
-        <div class="row"><span class="t">19:00</span><div class="b2 b-cls"></div><div class="act"><b>Tareas U</b></div></div>
-        <div class="row"><span class="t">20:00</span><div class="b2 b-skill"></div><div class="act a-skill"><b>Nueva habilidad</b><span>30 min</span></div></div>
-        <div class="row"><span class="t">20:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda</b></div></div>
-        <div class="row"><span class="t">21:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Output</b></div></div>
-        <div class="row"><span class="t">22:30</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b></div></div>
-      </div>
-    </div>
-
-    <!-- VIERNES -->
-    <div class="card">
-      <div class="dayhead">Viernes <span class="tag rest">DESCANSO</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">05:30</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Anki</b><span>repaso + 10 nuevas</span></div></div>
-        <div class="row"><span class="t">06:00</span><div class="b2 b-food"></div><div class="act"><b>Desayuno 1 + alistar</b></div></div>
-        <div class="row"><span class="t">07:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Transporte · Inglés</b><span>podcast</span></div></div>
-        <div class="row"><span class="t">08:00</span><div class="b2 b-work"></div><div class="act"><b>Pasantía presencial</b><span>8–13 · snack en receso</span></div></div>
-        <div class="row"><span class="t">13:00</span><div class="b2 b-en"></div><div class="act"><b>Transporte → casa</b><span>audiolibro</span></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-food"></div><div class="act"><b>Almuerzo</b></div></div>
-        <div class="row"><span class="t">14:30</span><div class="b2 b-skill"></div><div class="act a-skill"><b>Proyecto personal / curso</b><span>bloque tech</span></div></div>
-        <div class="row"><span class="t">17:00</span><div class="b2 b-rest"></div><div class="act"><b>Ocio / social</b><span>cierre de semana laboral</span></div></div>
-        <div class="row"><span class="t">20:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda</b></div></div>
-        <div class="row"><span class="t">21:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés ligero</b><span>serie con subtítulos en inglés</span></div></div>
-        <div class="row"><span class="t">23:00</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b><span>puede correrse</span></div></div>
-      </div>
-    </div>
-
-    <!-- SÁBADO -->
-    <div class="card">
-      <div class="dayhead">Sábado <span class="tag gym">ENTRENO · PIERNA B</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">07:30</span><div class="b2 b-rest"></div><div class="act"><b>Despertar (sin alarma estricta)</b></div></div>
-        <div class="row"><span class="t">08:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Anki + Desayuno</b></div></div>
-        <div class="row"><span class="t">09:00</span><div class="b2 b-gym"></div><div class="act a-gym"><b>Entreno · Pierna B</b></div></div>
-        <div class="row"><span class="t">10:00</span><div class="b2 b-skill"></div><div class="act a-skill"><b>Proyecto / curso</b><span>bloque largo de tech, 3 h</span></div></div>
-        <div class="row"><span class="t">13:00</span><div class="b2 b-food"></div><div class="act"><b>Almuerzo</b></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-cls"></div><div class="act"><b>Tareas U / proyecto</b></div></div>
-        <div class="row"><span class="t">16:00</span><div class="b2 b-rest"></div><div class="act"><b>Libre + caminata</b><span>suma pasos (8–10k)</span></div></div>
-        <div class="row"><span class="t">18:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés · Input largo</b><span>película/serie con subs en inglés</span></div></div>
-        <div class="row"><span class="t">19:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda + social</b></div></div>
-        <div class="row"><span class="t">23:00</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b></div></div>
-      </div>
-    </div>
-
-    <!-- DOMINGO -->
-    <div class="card">
-      <div class="dayhead">Domingo <span class="tag rest">DESCANSO TOTAL</span></div>
-      <div class="tl">
-        <div class="row"><span class="t">08:00</span><div class="b2 b-rest"></div><div class="act"><b>Despertar libre + desayuno</b></div></div>
-        <div class="row"><span class="t">10:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Repaso semanal de inglés</b><span>errores de la semana + 1 unidad de gramática (Murphy)</span></div></div>
-        <div class="row"><span class="t">11:00</span><div class="b2 b-food"></div><div class="act"><b>Meal prep + plan de la semana</b><span>cocina base: arroz, menestra, pollo</span></div></div>
-        <div class="row"><span class="t">13:00</span><div class="b2 b-food"></div><div class="act"><b>Almuerzo</b></div></div>
-        <div class="row"><span class="t">14:00</span><div class="b2 b-rest"></div><div class="act"><b>Descanso / familia / ocio</b></div></div>
-        <div class="row"><span class="t">18:00</span><div class="b2 b-rest"></div><div class="act"><b>Alistar el lunes</b><span>ropa, maleta, mochila de entreno</span></div></div>
-        <div class="row"><span class="t">20:30</span><div class="b2 b-food"></div><div class="act"><b>Merienda</b></div></div>
-        <div class="row"><span class="t">21:00</span><div class="b2 b-en"></div><div class="act a-en"><b>Inglés ligero</b><span>podcast relajado</span></div></div>
-        <div class="row"><span class="t">22:30</span><div class="b2 b-rest"></div><div class="act"><b>Dormir</b><span>vuelve al horario base</span></div></div>
-      </div>
-    </div>
-
-  </div>
+  <div class="grid g2" id="scheduleGrid"><!-- render: app.js (SCHEDULE) --></div>
 
   <div class="callout warn">
     <b>Días intensos = descanso sagrado.</b> Mié, Vie y Dom no entrenas a propósito: el músculo crece en el descanso, no en el gimnasio. Si una noche no llegas a 7 h de sueño, mete una siesta de 20 min al mediodía.
@@ -406,64 +118,7 @@
     <b>Arranque · semanas 1–2:</b> no vayas "al fallo" en todo el día uno. Si no sale ninguna dominada, haz solo negativas (baja en 5 s); si las flexiones completas no salen, apóyate en rodillas; los fondos, con poco rango. Vas a tener agujetas fuertes los primeros días: es normal. El éxito de estas 2 semanas es <b>presentarte los 4 días</b>, no cuánto levantas.
   </div>
 
-  <div class="grid g2">
-    <div class="card">
-      <div class="dayhead"><span class="tag gym">LUN</span> Torso A · Tracción + postura</div>
-      <table class="tbl">
-        <thead><tr><th style="width:46%">Ejercicio</th><th>Series</th><th>Clave</th></tr></thead>
-        <tbody>
-          <tr><td><span class="ex">Dominadas<small>Espalda (ancho)</small></span></td><td class="sets">4 × máx</td><td>Si no salen, negativas: baja en 5 s.</td></tr>
-          <tr><td><span class="ex">Fondos (dips)<small>Pecho · tríceps</small></span></td><td class="sets">4 × 8–12</td><td>Inclínate un poco al frente para pecho.</td></tr>
-          <tr><td><span class="ex">Remo con mochila<small>Espalda media · postura</small></span></td><td class="sets">4 × 12</td><td>Torso inclinado, lleva al ombligo, aprieta escápulas.</td></tr>
-          <tr><td><span class="ex">Flexiones<small>Pecho</small></span></td><td class="sets">3 × 12–15</td><td>Cuerpo recto; mochila si es fácil.</td></tr>
-          <tr><td><span class="ex">Chin-ups<small>Bíceps</small></span></td><td class="sets">3 × máx</td><td>Palmas hacia ti, jala con los brazos.</td></tr>
-          <tr><td><span class="ex">Face-pull con toalla<small>Hombro post. · postura</small></span></td><td class="sets">3 × 15</td><td>Toalla en la barra; jala hacia la frente.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <div class="dayhead"><span class="tag gym">MAR</span> Pierna A + Core</div>
-      <table class="tbl">
-        <thead><tr><th style="width:46%">Ejercicio</th><th>Series</th><th>Clave</th></tr></thead>
-        <tbody>
-          <tr><td><span class="ex">Sentadilla profunda<small>Cuádriceps · glúteo</small></span></td><td class="sets">4 × 15–20</td><td>Mochila pesada; talón pegado al suelo.</td></tr>
-          <tr><td><span class="ex">Zancadas<small>Equilibrio · glúteo</small></span></td><td class="sets">3 × 12 c/p</td><td>Paso largo, torso erguido.</td></tr>
-          <tr><td><span class="ex">Puente a una pierna<small>Glúteo · lumbar</small></span></td><td class="sets">3 × 12 c/p</td><td>Aprieta el glúteo 1 s arriba.</td></tr>
-          <tr><td><span class="ex">Pantorrilla en escalón<small>Gemelos</small></span></td><td class="sets">4 × 20</td><td>Estira abajo, sube lento.</td></tr>
-          <tr><td><span class="ex">Elevación de rodillas<small>Abdomen</small></span></td><td class="sets">3 × 12</td><td>Colgado, sin balanceo.</td></tr>
-          <tr><td><span class="ex">Plancha<small>Core</small></span></td><td class="sets">3 × 40 s</td><td>Glúteo y abdomen apretados.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <div class="dayhead"><span class="tag gym">JUE</span> Torso B · Empuje</div>
-      <table class="tbl">
-        <thead><tr><th style="width:46%">Ejercicio</th><th>Series</th><th>Clave</th></tr></thead>
-        <tbody>
-          <tr><td><span class="ex">Fondos (dips)<small>Pecho · tríceps</small></span></td><td class="sets">4 × máx</td><td>Hoy es el protagonista; bajada controlada.</td></tr>
-          <tr><td><span class="ex">Pike push-ups<small>Hombros</small></span></td><td class="sets">4 × 8–12</td><td>Cadera alta (V), cabeza al suelo.</td></tr>
-          <tr><td><span class="ex">Dominadas<small>Espalda</small></span></td><td class="sets">3 × máx</td><td>Rango completo.</td></tr>
-          <tr><td><span class="ex">Flexiones diamante<small>Tríceps</small></span></td><td class="sets">3 × 12</td><td>Manos juntas bajo el pecho.</td></tr>
-          <tr><td><span class="ex">Remo con mochila<small>Espalda</small></span></td><td class="sets">3 × 12</td><td>Muy lento, 2 s arriba.</td></tr>
-          <tr><td><span class="ex">Wall angels<small>Postura</small></span></td><td class="sets">3 × 12</td><td>Espalda en la pared, brazos suben/bajan.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <div class="dayhead"><span class="tag gym">SÁB</span> Pierna B + Core</div>
-      <table class="tbl">
-        <thead><tr><th style="width:46%">Ejercicio</th><th>Series</th><th>Clave</th></tr></thead>
-        <tbody>
-          <tr><td><span class="ex">Sentadilla búlgara<small>Cuádriceps · glúteo</small></span></td><td class="sets">3 × 12 c/p</td><td>Pie de atrás en una silla.</td></tr>
-          <tr><td><span class="ex">Sentadilla con mochila<small>Piernas</small></span></td><td class="sets">4 × 15</td><td>Bajada controlada 3 s.</td></tr>
-          <tr><td><span class="ex">Curl femoral con toalla<small>Isquios</small></span></td><td class="sets">3 × 12</td><td>Desliza talones en piso liso.</td></tr>
-          <tr><td><span class="ex">Pantorrilla<small>Gemelos</small></span></td><td class="sets">4 × 20</td><td>En escalón, rango completo.</td></tr>
-          <tr><td><span class="ex">Hollow hold<small>Core</small></span></td><td class="sets">3 × 25 s</td><td>Lumbar pegada al piso.</td></tr>
-          <tr><td><span class="ex">Plancha lateral<small>Oblicuos</small></span></td><td class="sets">3 × 20 s c/l</td><td>Cadera arriba, línea recta.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <div class="grid g2" id="workoutsGrid"><!-- render: app.js (WORKOUTS) --></div>
 
   <div class="grid g2" style="margin-top:16px">
     <div class="card">
@@ -500,78 +155,8 @@
     <div class="card metric"><div class="lab">Agua · Ritmo</div><div class="big" style="color:var(--green)">3 L · +0.3</div><div class="note">~0.25–0.35 kg/semana. Despacio = más limpio.</div></div>
   </div>
 
-  <div class="grid g2">
-
-    <div class="card">
-      <div class="dayhead">Lunes <span class="tag gym">post-entreno</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>Batido: 300 ml leche entera + 60 g avena + 1 guineo + 1 cda (16 g) mantequilla de maní. Aparte: 2 huevos revueltos.</p></div>
-      <div class="meal"><div class="mh">Snack 1 (receso)</div><p>30 g maní + 1 manzana.</p></div>
-      <div class="meal"><div class="mh">Almuerzo</div><p>1½ taza arroz (225 g cocido) + 1 taza menestra de lenteja + 120 g pechuga de pollo + ½ aguacate.</p></div>
-      <div class="meal"><div class="mh">Snack 2 (pre-entreno)</div><p>200 g yogur griego + 40 g granola.</p></div>
-      <div class="meal"><div class="mh">Merienda</div><p>150 g tilapia + 200 g yuca cocida + ensalada con 1 cda aceite de oliva.</p></div>
-      <div class="daytot">≈ 2.640 kcal · 139 g proteína</div>
-    </div>
-
-    <div class="card">
-      <div class="dayhead">Martes <span class="tag gym">post-entreno</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>3 huevos revueltos + 2 panes integrales + 250 ml chocolate con leche entera.</p></div>
-      <div class="meal"><div class="mh">Snack 1</div><p>Sánduche de pollo (80 g pollo, 2 panes) + 1 yogur bebible.</p></div>
-      <div class="meal"><div class="mh">Almuerzo</div><p>150 g pasta (cruda) + 120 g carne molida + salsa + ½ aguacate.</p></div>
-      <div class="meal"><div class="mh">Snack 2</div><p>30 g almendras + 1 guineo.</p></div>
-      <div class="meal"><div class="mh">Merienda</div><p>Sopa de avena (40 g avena + leche) + 2 huevos + 1 pan.</p></div>
-      <div class="daytot">≈ 2.650 kcal · 133 g proteína</div>
-    </div>
-
-    <div class="card">
-      <div class="dayhead">Miércoles <span class="tag rest">descanso</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>Tigrillo de 1 verde grande con 2 huevos y 40 g queso + café con leche.</p></div>
-      <div class="meal"><div class="mh">Snack 1</div><p>1 taza fruta picada + 40 g granola + 1 cda miel.</p></div>
-      <div class="meal"><div class="mh">Almuerzo (llévalo)</div><p>1 taza arroz + 120 g pollo + ensalada + ½ aguacate.</p></div>
-      <div class="meal"><div class="mh">Snack 2</div><p>40 g queso + 20 g nueces.</p></div>
-      <div class="meal"><div class="mh">Merienda (fuerte)</div><p>Seco de pollo (150 g) con 1 taza arroz y ½ maduro.</p></div>
-      <div class="daytot">≈ 2.580 kcal · 124 g proteína</div>
-    </div>
-
-    <div class="card">
-      <div class="dayhead">Jueves <span class="tag gym">post-entreno</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>Batido: 300 ml leche + 60 g avena + ½ taza papaya/frutos rojos + 1 cda maní. Aparte: 2 huevos.</p></div>
-      <div class="meal"><div class="mh">Snack 1 (receso largo)</div><p>Sánduche de queso o atún + 1 fruta.</p></div>
-      <div class="meal"><div class="mh">Almuerzo</div><p>1½ taza arroz + 1 taza menestra de fréjol + 130 g carne + ½ aguacate.</p></div>
-      <div class="meal"><div class="mh">Snack 2 (pre-entreno)</div><p>200 g yogur griego + 1 guineo + 20 g granola.</p></div>
-      <div class="meal"><div class="mh">Merienda</div><p>150 g pollo a la plancha + 200 g papa + ensalada con aceite de oliva.</p></div>
-      <div class="daytot">≈ 2.760 kcal · 153 g proteína</div>
-    </div>
-
-    <div class="card">
-      <div class="dayhead">Viernes <span class="tag rest">descanso</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>Bolón de verde con queso (o chicharrón) + 2 huevos + café.</p></div>
-      <div class="meal"><div class="mh">Snack 1</div><p>30 g frutos secos + 1 yogur.</p></div>
-      <div class="meal"><div class="mh">Almuerzo</div><p>1 taza arroz + 150 g pescado (corvina/atún) + ½ porción patacones + ensalada.</p></div>
-      <div class="meal"><div class="mh">Snack 2</div><p>40 g chocolate amargo 70% + 20 g maní.</p></div>
-      <div class="meal"><div class="mh">Merienda</div><p>Arroz con 1 lata de atún + 1 huevo, o encebollado con 1 pan.</p></div>
-      <div class="daytot">≈ 2.600 kcal · 120 g proteína</div>
-    </div>
-
-    <div class="card">
-      <div class="dayhead">Sábado <span class="tag gym">post-entreno</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>3 huevos + 2 panes + 200 g yogur griego + 1 guineo.</p></div>
-      <div class="meal"><div class="mh">Snack 1</div><p>1 taza fruta + 40 g granola + miel.</p></div>
-      <div class="meal"><div class="mh">Almuerzo</div><p>Seco de carne (150 g) con 1½ taza arroz, ½ maduro y ½ aguacate.</p></div>
-      <div class="meal"><div class="mh">Snack 2</div><p>30 g almendras + 40 g queso.</p></div>
-      <div class="meal"><div class="mh">Merienda</div><p>150 g pollo + 1 taza quinua o arroz + ensalada con aceite de oliva.</p></div>
-      <div class="daytot">≈ 2.690 kcal · 135 g proteína</div>
-    </div>
-
-    <div class="card">
-      <div class="dayhead">Domingo <span class="tag rest">libre</span></div>
-      <div class="meal"><div class="mh">Desayuno</div><p>2 humitas (o bolón) + 2 huevos + café con leche.</p></div>
-      <div class="meal"><div class="mh">Snack 1</div><p>30 g nueces + 1 fruta.</p></div>
-      <div class="meal"><div class="mh">Almuerzo libre</div><p>Ceviche de camarón con chifles + 1 taza arroz (o encebollado).</p></div>
-      <div class="meal"><div class="mh">Snack 2</div><p>Batido: 300 ml leche + 40 g avena + 1 fruta.</p></div>
-      <div class="meal"><div class="mh">Merienda</div><p>Sánduche potente: 90 g pollo/atún + 2 panes + queso + aguacate, con leche.</p></div>
-      <div class="daytot">≈ 2.540 kcal · 116 g proteína</div>
-    </div>
-
+  <div class="grid g2" id="mealsGrid">
+    <!-- 7 tarjetas: app.js (MEALS) · equivalencias estáticas abajo -->
     <div class="card" style="background:#fcfcff">
       <div class="dayhead">Equivalencias (arma tu propio día)</div>
       <p class="eyebrow" style="margin-top:4px">Proteína (1 porción ≈)</p>
@@ -592,73 +177,24 @@
 <section class="panel" id="ingles">
   <p class="eyebrow">Prioridad de carrera · A2 → B2</p>
   <h2 class="section">Inglés diario con herramientas concretas</h2>
-  <p class="lead">En A2 tu cuello de botella es el <b>output</b> (hablar/escribir). Cada herramienta de abajo tiene un trabajo específico. <span class="free g" style="margin:0 3px">GRATIS</span> = sin costo · <span class="free p" style="margin:0 3px">PAGO</span> = de pago o freemium.</p>
+  <p class="lead">En A2 tu cuello de botella es el <b>output</b> (hablar/escribir). Cada herramienta de abajo tiene un trabajo específico y un momento del día. <span class="free g" style="margin:0 3px">GRATIS</span> = sin costo · <span class="free p" style="margin:0 3px">PAGO</span> = de pago o freemium.</p>
 
   <div class="card" style="margin-bottom:16px">
     <p class="eyebrow">Rutina diaria (~75 min, repartidos)</p>
     <table class="tbl">
       <thead><tr><th style="width:24%">Cuándo</th><th style="width:28%">Qué · herramienta</th><th>Cómo, exactamente</th></tr></thead>
       <tbody>
-        <tr><td class="sets">05:15 · 20 min</td><td><b>Vocabulario — Anki</b></td><td>Repasa el mazo pendiente y agrega 10 tarjetas nuevas con palabras que viste ayer.</td></tr>
         <tr><td class="sets">Transporte · ~60 min</td><td><b>Input — podcast + shadowing</b></td><td>Escucha y repite en voz baja imitando ritmo y entonación, frase por frase.</td></tr>
         <tr><td class="sets">Mediodía · pasivo</td><td><b>Inmersión tech</b></td><td>Tutoriales/docs de programación en inglés. Cuenta como estudio doble.</td></tr>
-        <tr><td class="sets">21:00 · 30–40 min</td><td><b>Output — IA / intercambio</b></td><td>Habla 10–15 min y escribe 5 frases de tu día; pide que te corrijan.</td></tr>
+        <tr><td class="sets">21:00 · 15 min</td><td><b>Vocabulario — Anki</b></td><td>Repasa el mazo pendiente y agrega 10 tarjetas nuevas con palabras que viste hoy.</td></tr>
+        <tr><td class="sets">21:15 · 20 min</td><td><b>Output — IA / intercambio</b></td><td>Habla 10–15 min y escribe 5 frases de tu día; pide que te corrijan.</td></tr>
         <tr><td class="sets">Domingo · 45 min</td><td><b>Gramática — Murphy</b></td><td>1 unidad + revisa los errores que anotaste en la semana.</td></tr>
       </tbody>
     </table>
   </div>
 
   <p class="eyebrow" style="margin-bottom:10px">Caja de herramientas, por función</p>
-  <div class="grid g3">
-    <div class="tool">
-      <div class="th"><h4>Anki</h4><span class="free g">GRATIS</span></div>
-      <p><b>Vocabulario (repetición espaciada).</b> Gratis en PC/Android (en iPhone es de pago). Crea tus tarjetas con palabras que encuentres, o baja un mazo de frecuencia. 20 nuevas/día.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>English Grammar in Use</h4><span class="free p">LIBRO</span></div>
-      <p><b>Gramática.</b> El de Raymond Murphy, edición intermedia (tapa azul). 1 unidad cada 1–2 días. Hay también versión app.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>BBC Learning English</h4><span class="free g">GRATIS</span></div>
-      <p><b>Input estructurado.</b> App y web. Empieza por su podcast <i>6 Minute English</i> y las series por nivel.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>LingQ</h4><span class="free p">FREEMIUM</span></div>
-      <p><b>Leer escuchando.</b> Importa artículos o videos: lees mientras escuchas y tocas las palabras que no sabes para traducirlas y guardarlas.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>YouTube · canales</h4><span class="free g">GRATIS</span></div>
-      <p><b>Input por nivel.</b> A2–B1: <i>Easy English</i>, <i>English with Lucy</i>, <i>BBC Learning English</i>. Luego tech: <i>Fireship</i>, <i>freeCodeCamp</i>, <i>Web Dev Simplified</i>.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>Podcasts</h4><span class="free g">GRATIS</span></div>
-      <p><b>Para el transporte.</b> A2–B1: <i>6 Minute English</i>, <i>Espresso English</i>, <i>All Ears English</i>. B1+: <i>Syntax</i>, <i>CodeNewbie</i> (tech).</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>HelloTalk / Tandem</h4><span class="free p">FREEMIUM</span></div>
-      <p><b>Intercambio con nativos.</b> Chat de texto y voz. Ofrece corregir su español a cambio de que te corrijan el inglés.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>italki</h4><span class="free p">PAGO</span></div>
-      <p><b>Tutor 1:1.</b> Los <i>community tutors</i> son económicos. Reserva 1–2 sesiones de conversación por semana cuando llegues a B1.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>IA conversacional</h4><span class="free g">GRATIS</span></div>
-      <p><b>Hablar sin pena.</b> Usa el modo voz de Claude/ChatGPT: "háblame en inglés nivel B1 y corrige mis errores". Tu compañero de práctica 24/7.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>ELSA Speak</h4><span class="free p">FREEMIUM</span></div>
-      <p><b>Pronunciación.</b> Coach de acento con IA: te marca exactamente qué sonidos corregir. 10 min/día.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>Reverso Context</h4><span class="free g">GRATIS</span></div>
-      <p><b>Palabras en contexto.</b> Cuando dudes cómo se usa una palabra, la ves en frases reales con traducción.</p>
-    </div>
-    <div class="tool">
-      <div class="th"><h4>EF SET</h4><span class="free g">GRATIS</span></div>
-      <p><b>Medir tu nivel.</b> Test de ~50 min que te da tu puntaje CEFR (A2/B1/B2). Hazlo ahora y cada 2–3 meses para ver el avance.</p>
-    </div>
-  </div>
+  <div class="grid g3" id="toolsGrid"><!-- render: app.js (TOOLS) --></div>
 
   <div class="grid g3" style="margin-top:16px">
     <div class="card">
@@ -726,100 +262,7 @@
 
 <p class="footer-note">CENTRO DE MANDO · construido sobre tu situación real · ajústalo cuando cambie tu horario</p>
 
-<script>
-(function(){
-  var tabs=document.querySelectorAll('.tab'), panels=document.querySelectorAll('.panel');
-  tabs.forEach(function(t){t.addEventListener('click',function(){
-    tabs.forEach(function(x){x.classList.remove('active');});
-    panels.forEach(function(p){p.classList.remove('show');});
-    t.classList.add('active');
-    document.getElementById(t.dataset.c).classList.add('show');
-    window.scrollTo({top:0,behavior:'smooth'});
-  });});
-
-  function load(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
-  function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-
-  var START=60,GOAL=70,peso=load('cmd_peso',60);
-  function renderPeso(){
-    var p=Math.max(0,Math.min(100,((peso-START)/(GOAL-START))*100));
-    document.getElementById('bar-peso').style.width=p+'%';
-    document.getElementById('tk-peso').textContent=peso+' → '+GOAL+' kg';
-    document.getElementById('pesoInput').value=peso;
-  }
-  document.getElementById('savePeso').addEventListener('click',function(){
-    var v=parseFloat(document.getElementById('pesoInput').value);
-    if(!isNaN(v)&&v>30&&v<150){peso=v;save('cmd_peso',peso);renderPeso();}
-  });
-  renderPeso();
-
-  var wl=document.getElementById('weeklabel');
-  wl.value=load('cmd_weeklabel','');
-  wl.addEventListener('input',function(){save('cmd_weeklabel',wl.value);});
-
-  var days=['L','M','X','J','V','S','D'];
-  var model=[
-    {cat:'NUTRICIÓN'},
-    {name:'Desayuno 1',sub:'mañana',rest:[0,0,0,0,0,0,0]},
-    {name:'Almuerzo + grasa buena',sub:'aceite / aguacate',rest:[0,0,0,0,0,0,0]},
-    {name:'Merienda proteica',rest:[0,0,0,0,0,0,0]},
-    {name:'Agua 3 L',rest:[0,0,0,0,0,0,0]},
-    {name:'Proteína ≥120 g',rest:[0,0,0,0,0,0,0]},
-    {cat:'CUERPO Y POSTURA'},
-    {name:'Entreno',sub:'Lun·Mar·Jue·Sáb',rest:[0,0,1,0,1,0,1]},
-    {name:'Pausas de postura',sub:'wall angels al trabajar',rest:[0,0,0,0,0,0,0]},
-    {name:'8–10k pasos',rest:[0,0,0,0,0,0,0]},
-    {cat:'INGLÉS (PRIORIDAD)'},
-    {name:'Anki vocabulario',rest:[0,0,0,0,0,0,0]},
-    {name:'Input + shadowing',sub:'transporte / escucha',rest:[0,0,0,0,0,0,0]},
-    {name:'Output',sub:'hablar / escribir',rest:[0,0,0,0,0,0,0]},
-    {cat:'TECH Y ENFOQUE'},
-    {name:'Trabajo / pasantía (~4 h)',rest:[0,0,0,0,0,1,1]},
-    {name:'1 Skill / proyecto',sub:'30–60 min',rest:[0,0,0,0,0,0,1]},
-    {cat:'CIERRE'},
-    {name:'Dormir ~7 h',sub:'cierre 22:30',rest:[0,0,0,0,0,0,0]},
-    {name:'Alistar la noche anterior',rest:[0,0,0,0,0,0,0]}
-  ];
-
-  var state=load('cmd_habits',{}), tbl=document.getElementById('htable');
-  function key(r,d){return r+'_'+d;}
-  function build(){
-    var h='<thead><tr><th class="hname">Hábito</th>';
-    days.forEach(function(d){h+='<th>'+d+'</th>';});
-    h+='</tr></thead><tbody>';
-    model.forEach(function(row,ri){
-      if(row.cat){h+='<tr class="cat"><td colspan="8">'+row.cat+'</td></tr>';return;}
-      h+='<tr><td class="hname">'+row.name+(row.sub?'<small>'+row.sub+'</small>':'')+'</td>';
-      for(var di=0;di<7;di++){
-        if(row.rest&&row.rest[di]){h+='<td><span class="ck rest"></span></td>';}
-        else{var on=state[key(ri,di)]?' on':'';h+='<td><span class="ck'+on+'" data-r="'+ri+'" data-d="'+di+'"></span></td>';}
-      }
-      h+='</tr>';
-    });
-    h+='</tbody>';tbl.innerHTML=h;
-    tbl.querySelectorAll('.ck:not(.rest)').forEach(function(c){
-      c.addEventListener('click',function(){
-        var k=key(c.dataset.r,c.dataset.d);
-        if(state[k]){delete state[k];c.classList.remove('on');}else{state[k]=1;c.classList.add('on');}
-        save('cmd_habits',state);pct();
-      });
-    });
-  }
-  function pct(){
-    var total=0,done=0;
-    model.forEach(function(row,ri){
-      if(row.cat)return;
-      for(var di=0;di<7;di++){if(row.rest&&row.rest[di])continue;total++;if(state[key(ri,di)])done++;}
-    });
-    var p=total?Math.round(done/total*100):0;
-    document.getElementById('weekbar').style.width=p+'%';
-    document.getElementById('weekpct').textContent=p+'%';
-  }
-  document.getElementById('resetWeek').addEventListener('click',function(){
-    if(confirm('¿Borrar todas las marcas de esta semana?')){state={};save('cmd_habits',state);build();pct();}
-  });
-  build();pct();
-})();
-</script>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

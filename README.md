@@ -1,16 +1,29 @@
 # Centro de Mando
 
-Aplicación estática de una sola página (`public/index.html`), sin build ni dependencias.
+Aplicación estática de una sola página, sin build ni dependencias. El contenido
+(horario, entreno, comidas, herramientas de inglés, hábitos) vive como datos en
+`data.js` y se renderiza con `app.js`; editar el plan es tocar un objeto, no HTML.
 
 ## Estructura
 
 ```
 .
 ├── public/
-│   ├── index.html   # la app (autocontenida: HTML + CSS + JS inline)
+│   ├── index.html   # cascarón: header, tabs y contenedores vacíos
+│   ├── styles.css   # todos los estilos
+│   ├── data.js      # contenido: SCHEDULE, WORKOUTS, MEALS, TOOLS, HABITS
+│   ├── app.js       # render de cada sección + tabs + tracker + peso
 │   └── _headers     # cabeceras de seguridad y caché para Cloudflare Pages
 └── wrangler.toml    # configuración de Cloudflare Pages
 ```
+
+## Editar el plan
+
+Casi todo se cambia en `public/data.js`:
+
+- **Horario:** `SCHEDULE` — un objeto por día con sus filas `{t, type, title, note}`.
+  `type` define el color del bloque (`en`, `cls`, `gym`, `food`, `work`, `skill`, `mob`, `rest`).
+- **Entreno:** `WORKOUTS` · **Nutrición:** `MEALS` · **Inglés:** `TOOLS` · **Hábitos:** `HABITS`.
 
 ## Desarrollo local
 
