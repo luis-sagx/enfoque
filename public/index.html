@@ -177,18 +177,18 @@
 <section class="panel" id="ingles">
   <p class="eyebrow">Prioridad de carrera · A2 → B2</p>
   <h2 class="section">Inglés diario con herramientas concretas</h2>
-  <p class="lead">En A2 tu cuello de botella es el <b>output</b> (hablar/escribir). Cada herramienta de abajo tiene un trabajo específico y un momento del día. <span class="free g" style="margin:0 3px">GRATIS</span> = sin costo · <span class="free p" style="margin:0 3px">PAGO</span> = de pago o freemium.</p>
+  <p class="lead">En A2 tu cuello de botella es el <b>output</b> (hablar/escribir). Cada herramienta de abajo tiene un trabajo específico y un momento del día. <b>Todo es <span class="free g" style="margin:0 3px">GRATIS</span></b>: cero apps de pago. Eras A2 y se oxidó, así que la Fase 1 abajo arranca reconstruyendo, no desde cero.</p>
 
   <div class="card" style="margin-bottom:16px">
-    <p class="eyebrow">Rutina diaria (~75 min, repartidos)</p>
+    <p class="eyebrow">Rutina diaria (~75 min, repartidos) · solo gratis</p>
     <table class="tbl">
-      <thead><tr><th style="width:24%">Cuándo</th><th style="width:28%">Qué · herramienta</th><th>Cómo, exactamente</th></tr></thead>
+      <thead><tr><th style="width:24%">Cuándo</th><th style="width:30%">Qué · herramienta</th><th>Cómo, exactamente</th></tr></thead>
       <tbody>
-        <tr><td class="sets">Transporte · ~60 min</td><td><b>Input — podcast + shadowing</b></td><td>Escucha y repite en voz baja imitando ritmo y entonación, frase por frase.</td></tr>
-        <tr><td class="sets">Mediodía · pasivo</td><td><b>Inmersión tech</b></td><td>Tutoriales/docs de programación en inglés. Cuenta como estudio doble.</td></tr>
+        <tr><td class="sets">Transporte · ~60 min</td><td><b>Input — 6 Minute English + shadowing</b></td><td>Escucha y repite en voz baja imitando ritmo y entonación, frase por frase. Descarga el episodio la noche anterior.</td></tr>
+        <tr><td class="sets">Mediodía · pasivo</td><td><b>Inmersión tech — Language Reactor</b></td><td>Tutoriales/docs de programación en inglés, con subtítulos dobles. Cuenta como estudio doble.</td></tr>
         <tr><td class="sets">21:00 · 15 min</td><td><b>Vocabulario — Anki</b></td><td>Repasa el mazo pendiente y agrega 10 tarjetas nuevas con palabras que viste hoy.</td></tr>
-        <tr><td class="sets">21:15 · 20 min</td><td><b>Output — IA / intercambio</b></td><td>Habla 10–15 min y escribe 5 frases de tu día; pide que te corrijan.</td></tr>
-        <tr><td class="sets">Domingo · 45 min</td><td><b>Gramática — Murphy</b></td><td>1 unidad + revisa los errores que anotaste en la semana.</td></tr>
+        <tr><td class="sets">21:15 · 20 min</td><td><b>Output — IA por voz</b></td><td>Habla 10–15 min con Claude/ChatGPT ("nivel A2, corregime") y escribe 5 frases de tu día.</td></tr>
+        <tr><td class="sets">Domingo · 45 min</td><td><b>Gramática — Perfect English Grammar</b></td><td>1 tema + ejercicios en perfect-english-grammar.com + revisa los errores que anotaste en la semana.</td></tr>
       </tbody>
     </table>
   </div>
@@ -196,32 +196,58 @@
   <p class="eyebrow" style="margin-bottom:10px">Caja de herramientas, por función</p>
   <div class="grid g3" id="toolsGrid"><!-- render: app.js (TOOLS) --></div>
 
-  <div class="grid g3" style="margin-top:16px">
+  <div class="card" style="margin:16px 0 6px;background:#fcfcff">
+    <p class="eyebrow" style="margin-top:0">Progresión · cada fase cierra con un EF SET (efset.org). Anotá el puntaje: es tu prueba de avance.</p>
+  </div>
+  <div class="grid g3">
     <div class="card">
-      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 1</span> Mes 1–3 · A2→B1</div>
+      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 0</span> Esta semana · Diagnóstico</div>
       <ul class="clean">
-        <li>Diario: Anki + input fácil (BBC, Easy English, LingQ).</li>
-        <li>Gramática: Murphy intermedio.</li>
-        <li>Cambia celular, sistema y editor a inglés.</li>
-        <li>Empieza shadowing aunque suene raro.</li>
+        <li>Hacé el <b>EF SET</b> hoy y anotá tu número real.</li>
+        <li>BBC curso <b>"Beginner" (A1)</b> para sacudir el óxido.</li>
+        <li>Instalá Anki + extensión Language Reactor.</li>
+        <li>Cambiá celular, sistema y editor a inglés.</li>
       </ul>
     </div>
     <div class="card">
-      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 2</span> Mes 4–8 · B1→B2</div>
+      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 1</span> Mes 1–2 · Reconstruir A2</div>
       <ul class="clean">
-        <li>Contenido nativo: canales tech, podcasts, series con subs en inglés.</li>
-        <li>Output activo: HelloTalk + 1 tutor italki/semana.</li>
+        <li>Input: BBC <b>"Lower-intermediate"</b> + Arnel’s Everyday English.</li>
+        <li>Anki: mazo de las ~1000 palabras más usadas, 10/día.</li>
+        <li>Gramática: Perfect English Grammar (presente/pasado/futuro).</li>
+        <li>Output: IA por voz 10 min/día, aunque salga roto.</li>
+        <li><b>Meta:</b> EF SET marca A2 sólido.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 2</span> Mes 3–5 · A2 → B1</div>
+      <ul class="clean">
+        <li>Input: 6 Minute English con shadowing; series con Language Reactor.</li>
+        <li>Anki: palabras que salen de tus videos, no listas sueltas.</li>
+        <li>Output: subí a escribir 5 frases/día + 15 min de habla.</li>
         <li>Commits y comentarios de código en inglés.</li>
-        <li>Conversación con IA, pidiendo correcciones.</li>
+        <li><b>Meta:</b> EF SET toca B1.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 3</span> Mes 6+ · Consolidar B1 → B2</div>
+      <ul class="clean">
+        <li>Contenido nativo sin subtítulos; docs técnicas de corrido.</li>
+        <li>Output real: intercambio de idiomas gratis o conversación con IA.</li>
+        <li>Comunidades dev en inglés (Discord, GitHub).</li>
+        <li>Practicá entrevistas técnicas en voz alta.</li>
+        <li><b>Meta:</b> EF SET hacia B2.</li>
       </ul>
     </div>
     <div class="card">
-      <div class="dayhead"><span class="tag" style="background:var(--amber-bg);color:var(--amber)">FASE 3</span> Mes 9+ · B2</div>
+      <div class="dayhead"><span class="tag" style="background:var(--violet-bg,#efeaff);color:var(--violet)">CLAVE</span> Que no se te olvide</div>
       <ul class="clean">
-        <li>Sin subtítulos. Docs técnicas de corrido.</li>
-        <li>Comunidades dev en inglés (Discord, GitHub).</li>
-        <li>Practica entrevistas técnicas en voz alta.</li>
-        <li>Mide con EF SET cada 2–3 meses.</li>
+        <li><b>Pegá inglés al gatillo, no al reloj:</b> "me siento en el bus → play". Funciona mejor que "a las 6:00".</li>
+        <li><b>Día cero prohibido:</b> el peor día, mínimo 1 Anki + 1 frase. Mantiene la cadena.</li>
+        <li><b>Prepará la noche anterior:</b> descargá el podcast/video de mañana.</li>
+        <li><b>Marcá Hábitos cada noche</b> y poné este panel en la pantalla de inicio del celu.</li>
       </ul>
     </div>
   </div>
